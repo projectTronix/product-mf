@@ -1,0 +1,11 @@
+.carousel-card {
+    border-radius: 0;
+    border-style: none;
+    .carousel-card-image {
+        border-radius: 0;
+        filter: brightness(50%);
+        height: 400px;
+        width: 400px;
+        object-fit: cover;
+    }
+}

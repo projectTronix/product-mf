@@ -1,0 +1,18 @@
+.catalogue-wrapper {
+    margin: 5rem auto;
+    .search-sort-wrapper {
+        margin-bottom: 2rem;
+    }
+    .products-menu {
+            font-family: "Kanit", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+    
+            .page-controls {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin: 1rem auto;
+            }
+        }
+}

@@ -1,0 +1,16 @@
+.product-btn-container {
+    margin-bottom: 1rem;
+    .product-btn {
+            border-radius: 9999px;
+            background-color: rgb(37 99 235);
+            padding: 1rem;
+            font-size: 1rem;
+            color: white;
+            span {
+                margin-left: 1.5rem;
+                font-size: 2rem;
+                top: 3px;
+                color: rgb(145, 186, 252);
+            }
+    }
+}
