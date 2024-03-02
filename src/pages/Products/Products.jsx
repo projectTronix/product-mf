@@ -7,7 +7,7 @@ import Catalogue from "../../components/Catalogue/Catalogue";
 const Products = () => {
   return (
     <Container className="catalogue-container" fluid>
-      <Catalogue/>
+      <Catalogue />
     </Container>
   )
 }

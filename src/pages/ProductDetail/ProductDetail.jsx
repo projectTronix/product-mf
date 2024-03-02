@@ -37,7 +37,8 @@ const ProductDetail = () => {
         />
       </Row>
       <Row>
-        <ProductCarousel />
+        <h3>People also viewed</h3>
+        <ProductCarousel categoryTitle={product.categoryTitle} />
       </Row>
     </Container>
   );
