@@ -34,6 +34,8 @@ const ProductDetail = ({cart, setCart}) => {
           image={product.imageUrl}
           specifications={product.specifications}
           price={product.price}
+          cart={cart}
+          setCart={setCart}
         />
       </Row>
       <Row>

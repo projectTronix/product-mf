@@ -14,6 +14,7 @@ const Quantity = ({ quantity, setQuantity }) => {
         <Form.Control
           name="quantity"
           defaultValue="1"
+          min={1}
           type="number"
           onChange={handleQuantity}
         />

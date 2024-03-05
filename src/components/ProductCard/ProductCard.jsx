@@ -16,6 +16,8 @@ const ProductCard = ({
   image,
   specifications,
   price,
+  cart,
+  setCart
 }) => {
   const [quantity, setQuantity] = useState(1);
   return (
@@ -37,7 +39,7 @@ const ProductCard = ({
               <Quantity quantity={quantity} setQuantity={setQuantity} />
             </div>
 
-            <AddToCart productId={id} quantity={quantity} />
+            <AddToCart productId={id} quantity={quantity} cart={cart} setCart={setCart} />
           </Container>
         </Col>
       </Row>

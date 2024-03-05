@@ -3,8 +3,8 @@ import Container from "react-bootstrap/Container";
 import "./Products.scss";
 import Catalogue from "../../components/Catalogue/Catalogue";
 
-const Products = () => {
-  const [cart, setCart] = useState([]);
+const Products = ({cart, setCart}) => {
+  
   return (
     <Container className="catalogue-container" fluid>
       <Catalogue cart={cart} setCart={setCart} />
