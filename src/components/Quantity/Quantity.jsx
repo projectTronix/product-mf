@@ -15,6 +15,7 @@ const Quantity = ({ quantity, setQuantity }) => {
           name="quantity"
           defaultValue="1"
           min={1}
+          max={20}
           type="number"
           onChange={handleQuantity}
         />
