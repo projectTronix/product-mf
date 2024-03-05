@@ -15,12 +15,9 @@ const ProductCarousel = ({categoryTitle}) => {
   useEffect(() => {
       const fetchProducts = async () => {
         try {
-          console.log(categoryTitle)
           let url = new URL(`http://localhost:8090/products/category/${categoryTitle}`);
-          console.log(url.toString());
           const response = await axios.get(url.toString());
             setProducts(response.data);
-            console.log(products);
         } catch (error) {
           console.log(error);
         }
@@ -41,6 +38,7 @@ const ProductCarousel = ({categoryTitle}) => {
                   title={item.title}
                   price={item.price}
                   description={item.description.slice(0, 60)}
+                  key={id}
                 />
               );
             })}

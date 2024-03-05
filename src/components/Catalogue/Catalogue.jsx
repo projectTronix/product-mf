@@ -9,7 +9,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Filter from "../Filter/Filter";
 import Sort from "../Sort/Sort";
 import CatalogueCard from "../CatalogueCard/CatalogueCard";
-const Catalogue = () => {
+const Catalogue = ({cart, setCart}) => {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("");
@@ -97,11 +97,14 @@ const Catalogue = () => {
                   const id = item.productId;
                   return (
                     <CatalogueCard
+                      key={id}
                       id={id}
                       imageUrl={item.imageUrl}
                       title={item.title}
                       price={item.price}
                       description={item.description.slice(0, 60)}
+                      cart={cart}
+                      setCart={setCart}
                     />
                   );
                 })}

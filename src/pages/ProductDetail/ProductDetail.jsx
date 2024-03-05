@@ -6,7 +6,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import ProductCarousel from "../../components/ProductCarousel/ProductCarousel";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-const ProductDetail = () => {
+const ProductDetail = ({cart, setCart}) => {
   let { id } = useParams();
   const [product, setProduct] = useState([]);
   const fetchProduct = async () => {

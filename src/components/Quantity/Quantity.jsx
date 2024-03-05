@@ -1,22 +1,25 @@
-import React from 'react'
+import React from "react";
+import "./Quantity.scss";
 import Form from "react-bootstrap/Form";
-import './Quantity.scss'
-const Quantity = ({quantity, setQuantity}) => {
+import InputGroup from "react-bootstrap/InputGroup";
+const Quantity = ({ quantity, setQuantity }) => {
+  const handleQuantity = (e) => {
+    const value = e.target.value;
+    setQuantity(value);
+  };
   return (
     <div className="quantity-wrapper">
-      <span className="quantity-head">Quantity</span>
-      <Form.Select
-        size="sm"
-        className="quantity-options"
-        onChange={(e) => setQuantity(e.target.value)}
-      >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </Form.Select>
+      <InputGroup size="sm" className="mb-3">
+        <InputGroup.Text id="inputGroup-min-price">Quantity</InputGroup.Text>
+        <Form.Control
+          name="quantity"
+          defaultValue="1"
+          type="number"
+          onChange={handleQuantity}
+        />
+      </InputGroup>
     </div>
   );
-}
+};
 
-export default Quantity
+export default Quantity;

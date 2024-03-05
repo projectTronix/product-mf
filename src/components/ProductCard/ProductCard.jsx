@@ -5,9 +5,9 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import "./ProductCard.scss";
-import ProductButton from "../ProductButton/ProductButton"
 import Specifications from "../Specifications/Specifications";
 import Quantity from "../Quantity/Quantity";
+import AddToCart from "../AddToCart/AddToCart";
 
 const ProductCard = ({
   id,
@@ -17,7 +17,7 @@ const ProductCard = ({
   specifications,
   price,
 }) => {
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(1);
   return (
     <Container className="pdp">
       <Row>
@@ -37,11 +37,11 @@ const ProductCard = ({
               <Quantity quantity={quantity} setQuantity={setQuantity} />
             </div>
 
-            <ProductButton text="Add to Cart" />
+            <AddToCart productId={id} quantity={quantity} />
           </Container>
         </Col>
       </Row>
-      <hr className="mt-5"/>
+      <hr className="mt-5" />
     </Container>
   );
 };
