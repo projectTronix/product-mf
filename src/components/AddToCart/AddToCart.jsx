@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-
+import { toast } from "react-toastify";
 import api from "../../api";
 import "./AddToCart.scss";
 
@@ -13,7 +13,10 @@ const AddToCart = ({ productId, quantity, cart, setCart }) => {
         quantityAdd: quantity
       });
       if (response.status == 200) {
-        setCart([...cart,productId]);
+        setCart([...cart, productId]);
+        toast.success("Product added to cart successfully.", {
+          autoClose: 1000,
+        });
       }
       
     } catch (error) {

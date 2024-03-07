@@ -9,6 +9,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import Filter from "../Filter/Filter";
 import Sort from "../Sort/Sort";
 import CatalogueCard from "../CatalogueCard/CatalogueCard";
+import { ToastContainer } from "react-toastify";
+import EmptyCatalogue from '../EmptyCatalogue/EmptyCatalogue'
 const Catalogue = ({cart, setCart}) => {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("");
@@ -64,9 +66,9 @@ const Catalogue = ({cart, setCart}) => {
       setCurrentPage(currentPage + 1);
     }
   };
-
   return (
     <Container fluid className="catalogue-wrapper">
+      <ToastContainer theme="dark"/>
       <Row className="search-sort-wrapper">
         <Col className="search-col">
           <SearchBar query={query} setQuery={setQuery} />
@@ -89,6 +91,11 @@ const Catalogue = ({cart, setCart}) => {
             setCategory={setCategory}
           />
         </Col>
+        {products.content && products.content.length == 0 && (
+          <Col>
+            <EmptyCatalogue />
+          </Col>
+        )}
         <Col md="auto">
           <Container className="products-menu">
             <Row xs={1} sm={2} md={2} lg={3} xl={3} className="product-row g-4">

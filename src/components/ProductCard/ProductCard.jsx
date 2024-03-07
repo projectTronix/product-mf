@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import "./ProductCard.scss";
+import { ToastContainer } from "react-toastify";
 import Specifications from "../Specifications/Specifications";
 import Quantity from "../Quantity/Quantity";
 import AddToCart from "../AddToCart/AddToCart";
@@ -22,6 +23,7 @@ const ProductCard = ({
   const [quantity, setQuantity] = useState(1);
   return (
     <Container className="pdp">
+      <ToastContainer theme="dark"/>
       <Row>
         <Col sm={6}>
           <Container className="product-img-container">
