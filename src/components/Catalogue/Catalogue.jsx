@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import "./Catalogue.scss";
+import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,7 +12,8 @@ import Sort from "../Sort/Sort";
 import CatalogueCard from "../CatalogueCard/CatalogueCard";
 import { ToastContainer } from "react-toastify";
 import EmptyCatalogue from '../EmptyCatalogue/EmptyCatalogue'
-const Catalogue = ({cart, setCart}) => {
+const Catalogue = ({ cart, setCart }) => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("");
@@ -50,6 +52,9 @@ const Catalogue = ({cart, setCart}) => {
         setTotalPages(response.data.totalPages);
       } catch (error) {
         console.log(error);
+        if (error.code == "ERR_NETWORK") {
+          navigate("/error", { replace: true });
+        }
       }
     };
     fetchProducts(currentPage);

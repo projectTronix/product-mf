@@ -20,6 +20,7 @@ const ProductCard = ({
   cart,
   setCart
 }) => {
+  
   const [quantity, setQuantity] = useState(1);
   return (
     <Container className="pdp">

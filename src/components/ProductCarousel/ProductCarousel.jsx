@@ -2,8 +2,10 @@ import { React, useState, useEffect } from "react";
 import "./ProductCarousel.scss";
 import Carousel from "react-bootstrap/Carousel";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import CarouselCard from "../CarouselCard/CarouselCard";
-const ProductCarousel = ({categoryTitle}) => {
+const ProductCarousel = ({ categoryTitle }) => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const reduceProducts = (acc, cur, index) => {
     const groupIndex = Math.floor(index / 3);
@@ -20,6 +22,9 @@ const ProductCarousel = ({categoryTitle}) => {
             setProducts(response.data);
         } catch (error) {
           console.log(error);
+          if (error.code == "ERR_NETWORK") {
+            navigate("/error", { replace: true });
+          }
         }
       };
       fetchProducts();
