@@ -14,7 +14,7 @@ const ProductNavigation = () => {
   return (
     <Routes>
       <Route path="/" element={<Products cart={cart} setCart={setCart} />} />
-      <Route path="/category/:id" element={<Category />} />
+      {/* <Route path="/category/:id" element={<Category />} /> */}
       <Route path="/:id" element={<ProductDetail cart={cart} setCart={setCart} />} />
       </Routes>
 
