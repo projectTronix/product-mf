@@ -68,6 +68,7 @@ const Filter = ({ filter, setFilter, category, setCategory }) => {
               defaultValue="129"
               type="number"
               onChange={handleFilter}
+              className="price-filter"
             />
           </InputGroup>
           <InputGroup size="sm" className="mb-3">
@@ -79,6 +80,7 @@ const Filter = ({ filter, setFilter, category, setCategory }) => {
               defaultValue="259999"
               type="number"
               onChange={handleFilter}
+              className="price-filter"
             />
           </InputGroup>
         </Form>

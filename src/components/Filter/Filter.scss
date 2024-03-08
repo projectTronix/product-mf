@@ -10,6 +10,12 @@
   .category-item {
     margin-bottom: 0.5rem;
   }
+  .category-item:focus {
+    font-size: 1.8rem;
+  }
+  .category-item:hover {
+    font-size: 1.8rem;
+  }
 }
 .other-wrapper {
   .filter-type {
@@ -19,7 +25,9 @@
     font-style: normal;
     margin-bottom: 1rem;
   }
-
+  .price-filter {
+    height: 3rem;
+  }
   .filter-opt {
     font-size: 1rem;
   }

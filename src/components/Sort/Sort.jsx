@@ -23,11 +23,12 @@ const Sort = ({ sort, setSort, direction, setDirection }) => {
     }
   };
   return (
-    <div className="sort-wrapper">
+    <div className="sort-wrapper align-items-center">
       <span className="sort-head">Sort By</span>
       <Form.Select
         size="sm"
         onChange={handleSort}
+        className="sort-container"
       >
         <option value="0">Relevance</option>
         <option value="1">Price (low to high)</option>
