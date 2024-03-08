@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Filter.scss";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
+import api from "../../api";
 const Filter = ({ filter, setFilter, category, setCategory }) => {
+  const [categories, setCategories] = useState([]);
+  if (!categories) {
+    return <div>Loading...</div>;
+  }
+  const fetchCategories = async () => {
+    try {
+      const response = await api.get("http://localhost:8090/categories/all");
+      setCategories(response.data);
+    } catch (error) {
+      // Handle error or redirect to login
+      console.log(error);
+      if (error.code == "ERR_NETWORK") {
+        navigate("/error", { replace: true });
+      }
+    }
+  };
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   const handleFilter = (e) => {
     const value = e.target.value;
     setFilter({ [e.target.name]: value });
@@ -15,46 +35,26 @@ const Filter = ({ filter, setFilter, category, setCategory }) => {
       <Row className="category-wrapper">
         <Link
           className="link category-item"
-          name="Grocery"
+          name="all"
           onClick={(e) => setCategory(null)}
         >
           <span className="all-categories">All Categories</span>
         </Link>
-        <Link
-          className="link category-item"
-          name="Grocery"
-          onClick={(e) => setCategory(e.target.name)}
-        >
-          Grocery
-        </Link>
-        <Link
-          className="link category-item"
-          name="Electronics"
-          onClick={(e) => setCategory(e.target.name)}
-        >
-          Electronics
-        </Link>
-        <Link
-          className="link category-item"
-          name="Footwear"
-          onClick={(e) => setCategory(e.target.name)}
-        >
-          Footwear
-        </Link>
-        <Link
-          className="link category-item"
-          name="Home"
-          onClick={(e) => setCategory(e.target.name)}
-        >
-          Home
-        </Link>
-        <Link
-          className="link category-item"
-          name="Fitness"
-          onClick={(e) => setCategory(e.target.name)}
-        >
-          Fitness
-        </Link>
+        {categories &&
+          categories.map((item) => {
+            console.log(item);
+            return (
+              <Link
+                key={item.categoryId}
+                className="link category-item"
+                name={item.title}
+                value={item.title}
+                onClick={(e) => setCategory(e.target.name)}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
       </Row>
       <Row className="other-wrapper">
         <Form>
