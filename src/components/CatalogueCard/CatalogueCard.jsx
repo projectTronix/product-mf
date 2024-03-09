@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import "./CatalogueCard.scss";
 import AddToCart from "../AddToCart/AddToCart";
-const CatalogueCard = ({ id, imageUrl, title, price, description, cart, setCart }) => {
+import AOS from "aos";
+import "aos/dist/aos.css";
+const CatalogueCard = ({
+  id,
+  imageUrl,
+  title,
+  price,
+  description,
+  cart,
+  setCart,
+}) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <Col>
-      <Card className="productCard">
+      <Card data-aos="zoom-in-up" className="productCard">
         <Link className="link" to={`/products/${id}`} key={id} target="_blank">
           <Card.Img className="cardImage" variant="top" src={imageUrl} />
           <Card.Body className="product-card-body">
