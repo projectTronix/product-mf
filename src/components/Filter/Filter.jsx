@@ -6,7 +6,14 @@ import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api";
-const Filter = ({ filter, setFilter, category, setCategory }) => {
+const Filter = ({
+  maxPriceFilter,
+  setMaxPriceFilter,
+  minPriceFilter,
+  setMinPriceFilter,
+  category,
+  setCategory,
+}) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   if (!categories) {
@@ -67,7 +74,7 @@ const Filter = ({ filter, setFilter, category, setCategory }) => {
               aria-describedby="inputGroup-min-price"
               defaultValue="129"
               type="number"
-              onChange={handleFilter}
+              onChange={(e) => setMinPriceFilter(e.target.value)}
               className="price-filter"
             />
           </InputGroup>
@@ -79,7 +86,7 @@ const Filter = ({ filter, setFilter, category, setCategory }) => {
               aria-describedby="inputGroup-max-price"
               defaultValue="259999"
               type="number"
-              onChange={handleFilter}
+              onChange={(e) => setMaxPriceFilter(e.target.value)}
               className="price-filter"
             />
           </InputGroup>

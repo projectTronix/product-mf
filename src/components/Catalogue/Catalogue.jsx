@@ -11,11 +11,12 @@ import Filter from "../Filter/Filter";
 import Sort from "../Sort/Sort";
 import CatalogueCard from "../CatalogueCard/CatalogueCard";
 import { ToastContainer } from "react-toastify";
-import EmptyCatalogue from '../EmptyCatalogue/EmptyCatalogue'
+import EmptyCatalogue from "../EmptyCatalogue/EmptyCatalogue";
 const Catalogue = ({ cart, setCart }) => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState("");
+  const [minPricefilter, setMinPriceFilter] = useState("");
+  const [maxPriceFilter, setMaxPriceFilter] = useState("");
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState("");
   const [direction, setDirection] = useState("");
@@ -30,10 +31,17 @@ const Catalogue = ({ cart, setCart }) => {
       if (query) {
         url.searchParams.set("name", query);
       }
-      if (filter) {
-        for (const [key, value] of Object.entries(filter)) {
-          url.searchParams.set(key, value);
-        }
+      if (minPricefilter) {
+        // for (const [key, value] of Object.entries(filter)) {
+
+        // }
+        url.searchParams.set("minPrice", minPricefilter);
+      }
+      if (minPricefilter) {
+        // for (const [key, value] of Object.entries(filter)) {
+
+        // }
+        url.searchParams.set("maxPrice", maxPriceFilter);
       }
       if (sort) {
         url.searchParams.set("sortBy", sort);
@@ -55,9 +63,8 @@ const Catalogue = ({ cart, setCart }) => {
     }
   };
   useEffect(() => {
-    
     fetchProducts(currentPage);
-  }, [currentPage, query, filter, sort, direction, category]);
+  }, [currentPage, query, minPricefilter, maxPriceFilter, sort, direction, category]);
 
   const handlePrevPage = () => {
     if (currentPage > 0) {
@@ -72,7 +79,7 @@ const Catalogue = ({ cart, setCart }) => {
   };
   return (
     <Container fluid className="catalogue-wrapper">
-      <ToastContainer theme="dark"/>
+      <ToastContainer theme="dark" />
       <Row className="search-sort-wrapper">
         <Col className="search-col">
           <SearchBar query={query} setQuery={setQuery} />
@@ -89,8 +96,10 @@ const Catalogue = ({ cart, setCart }) => {
       <Row>
         <Col xs lg={2}>
           <Filter
-            filter={filter}
-            setFilter={setFilter}
+            maxPriceFilter={maxPriceFilter}
+            setMaxPriceFilter={setMaxPriceFilter}
+            minPricefilter={minPricefilter}
+            setMinPriceFilter={setMinPriceFilter}
             category={category}
             setCategory={setCategory}
           />
