@@ -34,10 +34,6 @@ const Filter = ({
   useEffect(() => {
     fetchCategories();
   }, []);
-  const handleFilter = (e) => {
-    const value = e.target.value;
-    setFilter({ [e.target.name]: value });
-  };
   return (
     <Container className="filter-wrapper" fluid>
       <Row className="category-wrapper">
