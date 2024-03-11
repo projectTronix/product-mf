@@ -4,9 +4,10 @@ import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../api";
 const Filter = ({ filter, setFilter, category, setCategory }) => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   if (!categories) {
     return <div>Loading...</div>;
@@ -42,7 +43,6 @@ const Filter = ({ filter, setFilter, category, setCategory }) => {
         </Link>
         {categories &&
           categories.map((item) => {
-            console.log(item);
             return (
               <Link
                 key={item.categoryId}

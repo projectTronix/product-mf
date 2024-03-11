@@ -30,8 +30,6 @@ const AddToCart = ({ productId, quantity, cart, setCart }) => {
   };
   return (
     <div className="d-grid gap-2 product-btn-container position-relative">
-      {" "}
-      {console.log(cart)}
       <Button size="lg" className="product-btn" onClick={handleAddToCart}>
         <span className="position-absolute start-0">+</span>Add to Cart
       </Button>

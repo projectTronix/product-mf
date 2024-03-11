@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import "./Catalogue.scss";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -22,41 +22,40 @@ const Catalogue = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  useEffect(() => {
-    const fetchProducts = async (page) => {
-      try {
-        let url = new URL(
-          `http://localhost:8090/products/all?page=${page}&size=6`
-        );
-        if (query) {
-          url.searchParams.set("name", query);
-        }
-        if (filter) {
-          for (const [key, value] of Object.entries(filter)) {
-            url.searchParams.set(key, value);
-          }
-        }
-        if (sort) {
-          url.searchParams.set("sortBy", sort);
-        }
-        if (direction) {
-          url.searchParams.set("direction", direction);
-        }
-        if (category) {
-          console.log(category);
-          url.searchParams.set("category", category);
-        }
-        console.log(url.toString());
-        const response = await axios.get(url.toString());
-        setProducts(response.data);
-        setTotalPages(response.data.totalPages);
-      } catch (error) {
-        console.log(error);
-        if (error.code == "ERR_NETWORK") {
-          navigate("/error", { replace: true });
+  const fetchProducts = async (page) => {
+    try {
+      let url = new URL(
+        `http://localhost:8090/products/all?page=${page}&size=6`
+      );
+      if (query) {
+        url.searchParams.set("name", query);
+      }
+      if (filter) {
+        for (const [key, value] of Object.entries(filter)) {
+          url.searchParams.set(key, value);
         }
       }
-    };
+      if (sort) {
+        url.searchParams.set("sortBy", sort);
+      }
+      if (direction) {
+        url.searchParams.set("direction", direction);
+      }
+      if (category) {
+        url.searchParams.set("category", category);
+      }
+      const response = await axios.get(url.toString());
+      setProducts(response.data);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.log(error);
+      if (error.code == "ERR_NETWORK") {
+        navigate("/error", { replace: true });
+      }
+    }
+  };
+  useEffect(() => {
+    
     fetchProducts(currentPage);
   }, [currentPage, query, filter, sort, direction, category]);
 

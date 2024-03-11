@@ -6,6 +6,15 @@ import Container from 'react-bootstrap/Container';
 import './SearchBar.scss'
 import InputGroup from "react-bootstrap/InputGroup";
 import SearchIcon from "@mui/icons-material/Search";
+const debounce = (func, delay) => {
+  let debounceTimer;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  };
+};
 const SearchBar = ({query, setQuery}) => {
   return (
     <Container className="search-bar-container">
@@ -18,7 +27,7 @@ const SearchBar = ({query, setQuery}) => {
                 type="text"
                 placeholder="Search"
                 className=" mr-sm-2 search-bar"
-                onChange={e => setQuery(e.target.value)}
+                onChange={debounce(e => setQuery(e.target.value), 1000)}
               />
             </InputGroup>
           </Col>
