@@ -2,6 +2,7 @@ import { React, useState, useEffect, useCallback } from "react";
 import "./Catalogue.scss";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import Spinner from "react-bootstrap/Spinner";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
@@ -32,15 +33,9 @@ const Catalogue = ({ cart, setCart }) => {
         url.searchParams.set("name", query);
       }
       if (minPricefilter) {
-        // for (const [key, value] of Object.entries(filter)) {
-
-        // }
         url.searchParams.set("minPrice", minPricefilter);
       }
       if (minPricefilter) {
-        // for (const [key, value] of Object.entries(filter)) {
-
-        // }
         url.searchParams.set("maxPrice", maxPriceFilter);
       }
       if (sort) {
@@ -64,7 +59,15 @@ const Catalogue = ({ cart, setCart }) => {
   };
   useEffect(() => {
     fetchProducts(currentPage);
-  }, [currentPage, query, minPricefilter, maxPriceFilter, sort, direction, category]);
+  }, [
+    currentPage,
+    query,
+    minPricefilter,
+    maxPriceFilter,
+    sort,
+    direction,
+    category,
+  ]);
 
   const handlePrevPage = () => {
     if (currentPage > 0) {
@@ -77,6 +80,13 @@ const Catalogue = ({ cart, setCart }) => {
       setCurrentPage(currentPage + 1);
     }
   };
+  if (!products) {
+    return (
+      <Container className="min-vh-100 d-flex justify-content-center">
+        <Spinner className="position-fixed top-50" animation="grow" />
+      </Container>
+    );
+  }
   return (
     <Container fluid className="catalogue-wrapper">
       <ToastContainer theme="dark" />
